@@ -30,11 +30,13 @@ def update(screen, hero, bullets, enemys):
     enemys.output_enemy()
     pygame.display.flip()
     
-def moving_bullets(screen, bullets):
+def moving_bullets(screen, bullets, enemys):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+    collisious = pygame.sprite.groupcollide(bullets, enemys, True, True) 
 
 def create_army(screen):
     enemy = Enemy(screen)
